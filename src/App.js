@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Optionbar from "./components/Optionbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Sidebar />
         <Optionbar />
       </div>
+      <Footer />
     </div>
   );
 }
