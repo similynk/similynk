@@ -1,0 +1,24 @@
+.sidebar {
+     background: #3A3B3D;
+     color: #5D5E60;
+     width: 4rem;
+     height: 100vh;
+     margin: 0;
+     padding: 0;
+     padding-top: 3rem;
+     padding-bottom: 3rem;
+}
+
+.active {
+     background: #5D5E60;
+     padding-top: 1rem;
+     padding-bottom: 1rem;
+     fill: white;
+}
+
+svg {
+     margin-bottom: 5rem;
+     width: 100%;
+     fill: #838383;
+     cursor: pointer;
+}
