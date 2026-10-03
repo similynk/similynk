@@ -1,0 +1,199 @@
+@import '@fontsource-variable/manrope';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/600.css';
+
+/* Dark-first; the light palette follows the system or the theme chosen in the docs. */
+:root {
+  --bg: #08090d;
+  --bg-2: #0d0e14;
+  --panel: #12131a;
+  --line: #1e1f28;
+  --line-2: #2a2b36;
+  --ink: #f2f1ee;
+  --ink-2: #a3a3ad;
+  --ink-3: #6b6c77;
+  --accent: #e25e00;
+  --accent-ink: #ff9a52;
+  --accent-wash: rgba(226, 94, 0, 0.14);
+  --rain: rgba(255, 255, 255, 0.05);
+  --rain-drop: rgba(255, 154, 82, 0.55);
+  --shadow: 0 40px 120px -30px rgba(226, 94, 0, 0.35);
+  --font: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --bg: #fbfbfa;
+    --bg-2: #f3f3f1;
+    --panel: #ffffff;
+    --line: #e6e6e3;
+    --line-2: #d6d6d2;
+    --ink: #121318;
+    --ink-2: #4f5059;
+    --ink-3: #8a8b93;
+    --accent-ink: #c24f00;
+    --accent-wash: rgba(226, 94, 0, 0.09);
+    --rain: rgba(0, 0, 0, 0.05);
+    --rain-drop: rgba(226, 94, 0, 0.45);
+    --shadow: 0 40px 100px -40px rgba(18, 19, 24, 0.35);
+    color-scheme: light;
+  }
+}
+
+:root[data-theme='light'] {
+  --bg: #fbfbfa;
+  --bg-2: #f3f3f1;
+  --panel: #ffffff;
+  --line: #e6e6e3;
+  --line-2: #d6d6d2;
+  --ink: #121318;
+  --ink-2: #4f5059;
+  --ink-3: #8a8b93;
+  --accent-ink: #c24f00;
+  --accent-wash: rgba(226, 94, 0, 0.09);
+  --rain: rgba(0, 0, 0, 0.05);
+  --rain-drop: rgba(226, 94, 0, 0.45);
+  --shadow: 0 40px 100px -40px rgba(18, 19, 24, 0.35);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+svg {
+  display: block;
+  flex: 0 0 auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 10px;
+  font: 700 14.5px var(--font);
+  text-decoration: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.08);
+}
+
+.btn.outline {
+  border-color: var(--line-2);
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.btn.outline:hover {
+  border-color: var(--ink-3);
+}
+
+.btn.sm {
+  height: 34px;
+  padding: 0 14px;
+  font-size: 13px;
+  border-radius: 9px;
+}
+
+section.band {
+  padding-block: 112px;
+  border-top: 1px solid var(--line);
+}
+
+section.band.alt {
+  background: var(--bg-2);
+}
+
+.kicker {
+  max-width: 620px;
+  display: grid;
+  gap: 14px;
+}
+
+.kicker h2 {
+  font-size: clamp(32px, 4.4vw, 46px);
+  line-height: 1.05;
+}
+
+.kicker p {
+  font-size: 17px;
+  color: var(--ink-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .btn {
+    transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  section.band {
+    padding-block: 72px;
+  }
+}

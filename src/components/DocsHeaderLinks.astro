@@ -1,0 +1,45 @@
+---
+// Replaces Starlight's social-icons slot with the same links as the home page header.
+import { version } from '../data/site';
+---
+
+<a class="link" href="/docs/updates/">Updates</a>
+<span class="chip">v{version}</span>
+<a class="download" href="/#get">Download</a>
+
+<style>
+  .link {
+    color: var(--sl-color-gray-2);
+    text-decoration: none;
+    font-size: var(--sl-text-sm);
+    font-weight: 600;
+  }
+  .link:hover {
+    color: var(--sl-color-white);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    height: 30px;
+    padding: 0 9px;
+    border-radius: 8px;
+    border: 1px solid var(--sl-color-gray-5);
+    font: 500 12px var(--sl-font-mono);
+    color: var(--sl-color-gray-2);
+  }
+  .download {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 14px;
+    border-radius: 9px;
+    background: #e25e00;
+    color: #fff;
+    font-size: var(--sl-text-sm);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .download:hover {
+    filter: brightness(1.08);
+  }
+</style>

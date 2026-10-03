@@ -1,0 +1,139 @@
+---
+import Icon from './Icon.astro';
+import ProductShot from './ProductShot.astro';
+import { latest } from '../data/site';
+
+const drops = [
+  { left: 8, duration: 7, delay: -2 },
+  { left: 19, duration: 9, delay: -6 },
+  { left: 31, duration: 8, delay: -1 },
+  { left: 44, duration: 11, delay: -4 },
+  { left: 57, duration: 7.5, delay: -3 },
+  { left: 69, duration: 10, delay: -8 },
+  { left: 81, duration: 8.5, delay: -5 },
+  { left: 92, duration: 9.5, delay: -2.5 },
+];
+---
+
+<section class="hero" id="top">
+  <div class="rain" aria-hidden="true">
+    {drops.map((d) => <i style={`left:${d.left}%;animation-duration:${d.duration}s;animation-delay:${d.delay}s`} />)}
+  </div>
+  <svg class="ghost" viewBox="0 0 240 140" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="85" cy="70" r="58" />
+      <circle cx="155" cy="70" r="58" />
+    </g>
+  </svg>
+
+  <div class="wrap copy">
+    <a class="badge" href={latest.href}><b>NEW</b>{latest.badge}</a>
+    <h1>Stay close to the people who matter.</h1>
+    <p class="lede">
+      A quiet, private place for your family, your friends and the music you share. No ads, no strangers,
+      nothing to scroll past.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="#get"><Icon name="android" size={17} />Download for Android</a>
+      <a class="btn outline" href="/docs/"><Icon name="book" size={16} />Documentation</a>
+    </div>
+  </div>
+
+  <ProductShot />
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: 120px 0;
+    text-align: center;
+  }
+  .rain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(90deg, var(--rain) 0 1px, transparent 1px 22px);
+    mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 70%, transparent);
+  }
+  .rain i {
+    position: absolute;
+    top: -20%;
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--rain-drop));
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    to {
+      transform: translateY(140vh);
+    }
+  }
+  .ghost {
+    position: absolute;
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+    width: min(760px, 120vw);
+    color: var(--line-2);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .copy {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 22px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px 5px 6px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    background: var(--bg);
+    font-size: 13px;
+    color: var(--ink-2);
+    text-decoration: none;
+  }
+  .badge:hover {
+    color: var(--ink);
+    border-color: var(--ink-3);
+  }
+  .badge b {
+    font: 600 11px var(--mono);
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--accent-wash);
+    color: var(--accent-ink);
+  }
+  h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+    max-width: 13ch;
+  }
+  .lede {
+    font-size: 18.5px;
+    color: var(--ink-2);
+    max-width: 44ch;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rain i {
+      display: none;
+    }
+  }
+  @media (max-width: 600px) {
+    .hero {
+      padding-block: 72px 0;
+    }
+  }
+</style>

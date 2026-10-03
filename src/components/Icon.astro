@@ -1,0 +1,46 @@
+---
+interface Props {
+  name: 'logo' | 'android' | 'apple' | 'globe' | 'book' | 'arrow' | 'messenger' | 'music';
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 18, class: className } = Astro.props;
+---
+
+<svg width={size} height={size} viewBox="0 0 24 24" class={className} aria-hidden="true">
+  {name === 'logo' && (
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <circle cx="8.5" cy="12" r="4.6" />
+      <circle cx="15.5" cy="12" r="4.6" />
+    </g>
+  )}
+  {name === 'android' && (
+    <path fill="currentColor" d="M17.6 9.48 19.4 6.4a.37.37 0 0 0-.64-.37l-1.83 3.17A11.3 11.3 0 0 0 12 8.25c-1.76 0-3.42.39-4.93 1.05L5.24 6.03a.37.37 0 1 0-.64.37L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52ZM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Z" />
+  )}
+  {name === 'apple' && (
+    <path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z" />
+  )}
+  {name === 'globe' && (
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18" />
+    </g>
+  )}
+  {name === 'book' && (
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6.5A2.5 2.5 0 0 0 4 21.5Z" />
+  )}
+  {name === 'arrow' && (
+    <path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+  )}
+  {name === 'messenger' && (
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+  )}
+  {name === 'music' && (
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="16" r="3" />
+    </g>
+  )}
+</svg>

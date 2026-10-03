@@ -1,0 +1,169 @@
+---
+---
+
+<section class="band alt" id="how">
+  <div class="wrap">
+    <div class="kicker">
+      <h2>Add. Gather. Share.</h2>
+      <p>
+        Bring in the people you're close to, group them the way your life is grouped, and share with exactly who
+        should see it.
+      </p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="tile" aria-hidden="true">
+          <div class="mini">
+            <div class="field">sana@gmail.com</div>
+            <div class="opts">
+              <span>Parent</span><span class="on">Sibling</span><span>Spouse</span><span>Cousin</span>
+            </div>
+            <div class="go">Send request</div>
+          </div>
+        </div>
+        <h3><span class="n">01</span>Add your family</h3>
+        <p>Invite relatives and say how you're related. They join your tree once they accept.</p>
+      </div>
+      <div class="step">
+        <div class="tile" aria-hidden="true">
+          <div class="mini">
+            <span class="cap">College friends · invite code</span>
+            <div class="code">K7MQ-2XPA</div>
+            <div class="go">Share code</div>
+          </div>
+        </div>
+        <h3><span class="n">02</span>Start a circle</h3>
+        <p>For college, school or work. Share a code and people join themselves.</p>
+      </div>
+      <div class="step">
+        <div class="tile" aria-hidden="true">
+          <div class="mini">
+            <span class="cap">VISIBLE TO</span>
+            <div class="aud on"><i></i>Immediate family</div>
+            <div class="aud"><i></i>Whole tree</div>
+            <div class="aud"><i></i>College friends</div>
+          </div>
+        </div>
+        <h3><span class="n">03</span>Share with who you choose</h3>
+        <p>Every photo goes to one audience. Nobody else sees it, its likes or its comments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .steps {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .step {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+    min-width: 0;
+  }
+  .tile {
+    height: 230px;
+    border-radius: 16px;
+    border: 1px solid var(--line-2);
+    background: var(--panel);
+    display: grid;
+    place-items: center;
+  }
+  h3 {
+    font-size: 16.5px;
+    letter-spacing: -0.02em;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .n {
+    font: 500 12.5px var(--mono);
+    color: var(--accent-ink);
+  }
+  .step p {
+    color: var(--ink-2);
+    font-size: 14.5px;
+  }
+  .mini {
+    width: 78%;
+    border-radius: 14px;
+    background: #0a0b11;
+    border: 1px solid #22232c;
+    padding: 12px;
+    color: #f0eeeb;
+    font-size: 11.5px;
+    display: grid;
+    gap: 8px;
+  }
+  .cap {
+    color: #9a9ba5;
+    font-size: 10.5px;
+  }
+  .field {
+    padding: 8px 10px;
+    border-radius: 9px;
+    background: #191a21;
+    border: 1px solid #e25e00;
+  }
+  .opts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .opts span {
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid #2c2d35;
+    color: #9a9ba5;
+    font-size: 10.5px;
+  }
+  .opts span.on {
+    border-color: #e25e00;
+    background: rgba(226, 94, 0, 0.18);
+    color: #fff;
+  }
+  .go {
+    padding: 8px;
+    border-radius: 9px;
+    background: #e25e00;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+  }
+  .code {
+    font: 600 22px var(--mono);
+    letter-spacing: 0.12em;
+    color: #fca676;
+    text-align: center;
+    padding: 6px 0;
+  }
+  .aud {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #272830;
+  }
+  .aud.on {
+    border-color: #e25e00;
+    background: rgba(226, 94, 0, 0.1);
+  }
+  .aud i {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #3a3b45;
+  }
+  .aud.on i {
+    border: 4px solid #e25e00;
+  }
+  @media (max-width: 900px) {
+    .steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

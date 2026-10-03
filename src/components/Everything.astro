@@ -1,0 +1,76 @@
+---
+const features = [
+  { name: 'CHATS', text: 'Private, live, with the people you know' },
+  { name: 'FAMILY TREE', text: 'Built together, confirmed by both sides' },
+  { name: 'CIRCLES', text: 'College, school, work and friends' },
+  { name: 'FEED', text: 'Photos for one audience at a time' },
+  { name: 'MUSIC', text: 'Your library, on your profile' },
+  { name: 'LISTENING ROOMS', text: 'Play in sync with a 6-digit code' },
+];
+---
+
+<section class="band" id="everything">
+  <div class="wrap">
+    <div class="kicker">
+      <h2>Everything in one quiet place.</h2>
+      <p>Chats, family, circles, photos and music, under one account. Nothing extra.</p>
+    </div>
+    <div class="grid">
+      {
+        features.map((f) => (
+          <div class="cell">
+            <b>{f.name}</b>
+            <span>{f.text}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--line-2);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .cell {
+    padding: 22px 24px;
+    display: grid;
+    gap: 6px;
+    border-right: 1px solid var(--line-2);
+    border-bottom: 1px solid var(--line-2);
+    min-width: 0;
+  }
+  .cell:nth-child(3n) {
+    border-right: 0;
+  }
+  .cell:nth-last-child(-n + 3) {
+    border-bottom: 0;
+  }
+  b {
+    font: 600 13px var(--mono);
+    letter-spacing: 0.06em;
+  }
+  span {
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .cell {
+      border-right: 0;
+    }
+    .cell:nth-last-child(-n + 3) {
+      border-bottom: 1px solid var(--line-2);
+    }
+    .cell:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>

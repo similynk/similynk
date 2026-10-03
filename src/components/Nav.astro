@@ -1,0 +1,86 @@
+---
+import Icon from './Icon.astro';
+import { version } from '../data/site';
+---
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><Icon name="logo" size={22} />Similynk</a>
+    <nav aria-label="Main">
+      <a href="/docs/">Docs</a>
+      <a href="/docs/updates/">Updates</a>
+    </nav>
+    <div class="right">
+      <span class="chip">v{version}</span>
+      <a class="btn primary sm" href="/#get">Download</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 40;
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .wrap {
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    height: 60px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16.5px;
+    letter-spacing: -0.02em;
+  }
+  .brand :global(svg) {
+    color: var(--accent);
+  }
+  nav {
+    display: flex;
+    gap: 4px;
+  }
+  nav a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-2);
+    padding: 6px 10px;
+    border-radius: 8px;
+  }
+  nav a:hover {
+    color: var(--ink);
+    background: var(--bg-2);
+  }
+  .right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 8px;
+    border: 1px solid var(--line-2);
+    font: 500 12.5px var(--mono);
+    color: var(--ink-2);
+  }
+  @media (max-width: 600px) {
+    nav,
+    .chip {
+      display: none;
+    }
+  }
+</style>

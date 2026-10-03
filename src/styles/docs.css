@@ -1,0 +1,76 @@
+@import '@fontsource-variable/manrope';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
+/* Starlight's colour scale mapped onto the site palette. */
+:root {
+  --sl-font: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif;
+  --sl-font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  --sl-color-accent-low: #3a1a06;
+  --sl-color-accent: #e25e00;
+  --sl-color-accent-high: #ffb27a;
+  --sl-color-white: #f2f1ee;
+  --sl-color-gray-1: #e3e2df;
+  --sl-color-gray-2: #bdbdc4;
+  --sl-color-gray-3: #8e8f99;
+  --sl-color-gray-4: #5b5c67;
+  --sl-color-gray-5: #2a2b36;
+  --sl-color-gray-6: #12131a;
+  --sl-color-black: #08090d;
+
+  --sl-color-bg-nav: var(--sl-color-black);
+  --sl-color-bg-sidebar: var(--sl-color-black);
+  --sl-color-hairline: #1e1f28;
+  --sl-color-hairline-light: #2a2b36;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #ffe3cf;
+  --sl-color-accent: #c24f00;
+  --sl-color-accent-high: #7a3200;
+  --sl-color-white: #121318;
+  --sl-color-gray-1: #1f2028;
+  --sl-color-gray-2: #3a3b44;
+  --sl-color-gray-3: #6a6b74;
+  --sl-color-gray-4: #9a9ba3;
+  --sl-color-gray-5: #d6d6d2;
+  --sl-color-gray-6: #efefec;
+  --sl-color-gray-7: #f6f6f4;
+  --sl-color-black: #fbfbfa;
+
+  --sl-color-hairline: #e6e6e3;
+  --sl-color-hairline-light: #d6d6d2;
+}
+
+.site-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--sl-color-white);
+}
+
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+h1#_top {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.sl-markdown-content kbd {
+  font: 500 0.85em var(--sl-font-mono);
+  padding: 0.1em 0.45em;
+  border-radius: 6px;
+  border: 1px solid var(--sl-color-gray-5);
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-white);
+  white-space: nowrap;
+}
+
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover,
+.sidebar-content a[aria-current='page']:focus {
+  background: rgba(226, 94, 0, 0.14);
+  color: var(--sl-color-white);
+  font-weight: 700;
+}

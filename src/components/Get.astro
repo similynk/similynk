@@ -1,0 +1,145 @@
+---
+import Icon from './Icon.astro';
+import { downloads, platforms } from '../data/site';
+---
+
+<section class="get" id="get">
+  <div class="wrap">
+    <h2>Get <em>Similynk</em></h2>
+    <p class="sub">Free, private and quiet. Sign in with Google.</p>
+    {
+      platforms.map((p) => (
+        <>
+          <div class="label">{p.label}</div>
+          <div class="tiles">
+            {downloads
+              .filter((d) => d.platform === p.id)
+              .map((d) => {
+                const icon = p.id === 'ios' ? 'apple' : d.app === 'Messenger' ? 'messenger' : 'music';
+                const body = (
+                  <>
+                    <span class="ic">
+                      <Icon name={icon} />
+                    </span>
+                    <span>
+                      <b>{d.app}</b>
+                      <small>{d.detail}</small>
+                    </span>
+                  </>
+                );
+                return d.href ? (
+                  <a class="dl" href={d.href}>
+                    {body}
+                  </a>
+                ) : (
+                  <span class="dl off">{body}</span>
+                );
+              })}
+          </div>
+        </>
+      ))
+    }
+    <a class="all" href="/docs/updates/">All updates<Icon name="arrow" size={15} /></a>
+  </div>
+</section>
+
+<style>
+  .get {
+    text-align: center;
+    padding-block: 120px 96px;
+    border-top: 1px solid var(--line);
+  }
+  h2 {
+    font-size: clamp(36px, 5vw, 54px);
+  }
+  h2 em {
+    font-style: normal;
+    color: var(--accent-ink);
+  }
+  .sub {
+    margin-top: 12px;
+    color: var(--ink-2);
+    font-size: 17px;
+  }
+  .label {
+    margin-top: 44px;
+    font: 500 12px var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .tiles {
+    margin: 14px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 860px;
+  }
+  .dl {
+    width: 240px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid var(--line-2);
+    background: var(--panel);
+    text-decoration: none;
+    text-align: left;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  a.dl:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .ic {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--bg-2);
+    display: grid;
+    place-items: center;
+    color: var(--ink);
+    flex: 0 0 auto;
+  }
+  .dl b {
+    display: block;
+    font-size: 14.5px;
+  }
+  .dl small {
+    display: block;
+    font: 500 11.5px var(--mono);
+    color: var(--ink-3);
+  }
+  .off {
+    opacity: 0.55;
+    border-style: dashed;
+  }
+  .all {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 36px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-2);
+    text-decoration: none;
+  }
+  .all:hover {
+    color: var(--ink);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dl {
+      transition: none;
+    }
+  }
+  @media (max-width: 600px) {
+    .get {
+      padding-block: 80px 72px;
+    }
+    .dl {
+      width: 100%;
+    }
+  }
+</style>
