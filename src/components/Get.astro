@@ -28,7 +28,7 @@ import { downloads, platforms } from '../data/site';
                   </>
                 );
                 return d.href ? (
-                  <a class="dl" href={d.href}>
+                  <a class="dl" href={d.href} download={d.download}>
                     {body}
                   </a>
                 ) : (
