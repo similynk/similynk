@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # Local-only: design mockups
 /design/
+
+# Local-only: the database reference for every Similynk app
+/supabase/

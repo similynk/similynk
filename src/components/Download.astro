@@ -3,9 +3,9 @@ import Icon from './Icon.astro';
 import { downloads, platforms } from '../data/site';
 ---
 
-<section class="get" id="get">
+<section class="download" id="download">
   <div class="wrap">
-    <h2>Get <em>Similynk</em></h2>
+    <h2>Download <em>Similynk</em></h2>
     <p class="sub">Free, private and quiet. Sign in with Google.</p>
     {
       platforms.map((p) => (
@@ -44,7 +44,7 @@ import { downloads, platforms } from '../data/site';
 </section>
 
 <style>
-  .get {
+  .download {
     text-align: center;
     padding-block: 120px 96px;
     border-top: 1px solid var(--line);
@@ -135,7 +135,7 @@ import { downloads, platforms } from '../data/site';
     }
   }
   @media (max-width: 600px) {
-    .get {
+    .download {
       padding-block: 80px 72px;
     }
     .dl {
