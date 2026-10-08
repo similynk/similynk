@@ -4,6 +4,7 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.similynk.com',
   integrations: [
     starlight({
       title: 'Similynk',
@@ -41,6 +42,7 @@ export default defineConfig({
           label: 'You',
           items: [
             { label: 'Profile', slug: 'docs/profile' },
+            { label: 'Settings', slug: 'docs/settings' },
             { label: 'Updates', slug: 'docs/updates' },
           ],
         },

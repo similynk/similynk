@@ -3,6 +3,9 @@ import { statSync } from 'node:fs';
 
 export const version = '1.0.0';
 
+/** The Android apps' versions, as in each app's pubspec.yaml. */
+export const versions = { Messenger: '1.1.0', Music: '2.5.0' } as const;
+
 export type Platform = 'web' | 'android' | 'ios';
 
 export interface Download {
@@ -25,9 +28,9 @@ function apk(app: 'Messenger' | 'Music', file: string): Download {
   return {
     app,
     platform: 'android',
-    detail: `APK · v${version}${size}`,
+    detail: `APK · v${versions[app]}${size}`,
     href: `/downloads/${file}`,
-    download: file.replace('.apk', `-v${version}.apk`),
+    download: file.replace('.apk', `-v${versions[app]}.apk`),
   };
 }
 
@@ -52,6 +55,6 @@ export const platforms: { id: Platform; label: string }[] = [
 ];
 
 export const latest = {
-  badge: 'One account across the web and Android',
+  badge: 'New in Messenger 1.1: group chats, voice messages and themes',
   href: '/docs/updates/',
 };
