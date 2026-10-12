@@ -1,15 +1,26 @@
 ---
 title: Updates
 description: What's new in Similynk.
-tableOfContents:
-  maxHeadingLevel: 3
+tableOfContents: false
 ---
 
-import { Badge } from '@astrojs/starlight/components';
+import { Badge, TabItem, Tabs } from '@astrojs/starlight/components';
 
-## Messenger
+<Tabs syncKey="app">
 
-### 1.1 · October 2026
+<TabItem label="Messenger">
+
+## 1.5 · October 2026
+
+- <Badge text="Added" variant="success" /> Edit your posts: change the caption, add, swap or remove the photo, or change who can see it.
+- <Badge text="Added" variant="success" /> Delete your account from Settings. It removes your Similynk account in Messenger and Music.
+- <Badge text="Added" variant="success" /> The Android app tells you when a new version is ready, and Settings can check any time.
+- <Badge text="Added" variant="success" /> Install Messenger on the web as an app on your computer or phone.
+- <Badge text="Improved" variant="note" /> Sharing your profile sends a link that opens the app when it's installed.
+- <Badge text="Improved" variant="note" /> The Android app is about a third of the size to download.
+- <Badge text="Improved" variant="note" /> Clearer pages when something goes wrong or a link leads nowhere on the web.
+
+## 1.1 · October 2026
 
 - <Badge text="Added" variant="success" /> Group chats for every circle, with sender names.
 - <Badge text="Added" variant="success" /> Photos, voice messages and songs shared from Similynk Music.
@@ -23,7 +34,7 @@ import { Badge } from '@astrojs/starlight/components';
 - <Badge text="Improved" variant="note" /> Links in messages open when tapped.
 - <Badge text="Improved" variant="note" /> Messages group by sender, with one time for each group.
 
-### 1.0 · October 2026
+## 1.0 · October 2026
 
 - <Badge text="Added" variant="success" /> Family tree with requests to accept or decline.
 - <Badge text="Added" variant="success" /> Circles with invite codes.
@@ -32,9 +43,27 @@ import { Badge } from '@astrojs/starlight/components';
 - <Badge text="Added" variant="success" /> Messenger on the web, with the same chats, family, circles and feed.
 - <Badge text="Improved" variant="note" /> Connections on someone's profile only show the family and circles you share with them.
 
-## Music
+</TabItem>
 
-### 2.5 · October 2026
+<TabItem label="Music">
+
+## 2.6 · October 2026
+
+- <Badge text="Added" variant="success" /> Invite friends to a room with a link. It opens the room in the browser or the app.
+- <Badge text="Added" variant="success" /> **Play all** and **Shuffle** on your own playlists in the app.
+- <Badge text="Added" variant="success" /> **Open in YouTube Music** from a song's info in the app.
+- <Badge text="Added" variant="success" /> Delete your account from Settings.
+- <Badge text="Added" variant="success" /> The Android app tells you when a new version is ready.
+- <Badge text="Added" variant="success" /> On the web, a **Tap to start listening** button when your browser stops a room’s music from starting by itself.
+- <Badge text="Improved" variant="note" /> Shared songs, albums, playlists, profiles and rooms are music.similynk.com links that open the app when it's installed.
+- <Badge text="Improved" variant="note" /> Album names show for many more songs, and song lengths show in more lists.
+- <Badge text="Improved" variant="note" /> Ending or leaving a room on the web asks first.
+- <Badge text="Improved" variant="note" /> Playback keeps working when YouTube updates its own apps.
+- <Badge text="Improved" variant="note" /> The Android app is about a third of the size to download.
+- <Badge text="Improved" variant="note" /> Settings only show what works: AI lyric translation and the unfinished Last.fm, volume normalisation, skip silence and Discord options are gone.
+- <Badge text="Fixed" variant="caution" /> Rooms no longer crash for listeners on Firefox.
+
+## 2.5 · October 2026
 
 - <Badge text="Added" variant="success" /> Send in a chat: share any song to your Similynk Messenger chats.
 - <Badge text="Added" variant="success" /> Songs opened from Messenger play right away, or wait with a Play now button if you're already listening.
@@ -43,10 +72,10 @@ import { Badge } from '@astrojs/starlight/components';
 - <Badge text="Improved" variant="note" /> The app reopens where you left it from the media notification.
 - <Badge text="Fixed" variant="caution" /> The Similynk Music logo no longer wraps onto two lines.
 
-### 2.4 · October 2026
+## 2.4 · October 2026
 
-- <Badge text="Added" variant="success" /> One Similynk account — sign in with Google and your likes, playlists and history stay in sync between the web and the app.
-- <Badge text="Added" variant="success" /> Profiles on the web — your banner, listening streak, followers, following and connections, and the music you share.
+- <Badge text="Added" variant="success" /> One Similynk account: sign in with Google and your likes, playlists and history stay in sync between the web and the app.
+- <Badge text="Added" variant="success" /> Profiles on the web: your banner, listening streak, followers, following and connections, and the music you share.
 - <Badge text="Added" variant="success" /> Listening rooms work across the web and the app, joined with an 8-character invite code.
 - <Badge text="Added" variant="success" /> More reactions on issue reports, including ➕ for "me too" and 🗿.
 - <Badge text="Improved" variant="note" /> Trending counts plays from both the web and the app, with Today, All Time and Most Liked views.
@@ -54,64 +83,68 @@ import { Badge } from '@astrojs/starlight/components';
 - <Badge text="Improved" variant="note" /> A new name and logo: PlayMuso is now Similynk Music.
 - <Badge text="Improved" variant="note" /> Lyric timing nudges stay on your device; shared lyric corrections have been retired.
 
-### 2.3 · August 2026
+## 2.3 · August 2026
 
-- <Badge text="Added" variant="success" /> Trending page — discover the most-played and most-liked songs, albums, and artists across every Similynk Music listener, with Today / All Time / Most Liked / and Most Replayed views.
+- <Badge text="Added" variant="success" /> Trending page: discover the most-played and most-liked songs, albums, and artists across every Similynk Music listener, with Today / All Time / Most Liked / and Most Replayed views.
 - <Badge text="Added" variant="success" /> Play-count and like-count badges on trending cards.
 - <Badge text="Improved" variant="note" /> Settings now uses a horizontal tab bar instead of a sidebar, matching the rest of the app.
 - <Badge text="Improved" variant="note" /> Sidebar icons stay centered in both expanded and collapsed states.
 - <Badge text="Fixed" variant="caution" /> Repeated library imports no longer inflate lifetime play counts.
 
-### 2.2 · June 2026
+## 2.2 · June 2026
 
-- <Badge text="Added" variant="success" /> Listening streaks — a flame badge tracks your current run of consecutive listening days.
-- <Badge text="Added" variant="success" /> Lifetime stats on Home — liked songs, playlists, and total plays at a glance.
+- <Badge text="Added" variant="success" /> Listening streaks: a flame badge tracks your current run of consecutive listening days.
+- <Badge text="Added" variant="success" /> Lifetime stats on Home: liked songs, playlists, and total plays at a glance.
 - <Badge text="Added" variant="success" /> Share any song via a direct link, using the native share sheet on mobile.
 - <Badge text="Improved" variant="note" /> Account avatar now shows your real profile photo instead of initials, when one is set.
 
-### 2.1 · April 2026
+## 2.1 · April 2026
 
-- <Badge text="Added" variant="success" /> Installable PWA — add Similynk Music to your home screen on desktop and mobile.
+- <Badge text="Added" variant="success" /> Installable PWA: add Similynk Music to your home screen on desktop and mobile.
 - <Badge text="Added" variant="success" /> Offline app-shell caching for instant loads on repeat visits.
 - <Badge text="Added" variant="success" /> Keyboard shortcuts for playback, library, and navigation.
-- <Badge text="Fixed" variant="caution" /> Occasional stale cached assets after an update — the service worker now clears itself outside production.
+- <Badge text="Fixed" variant="caution" /> Occasional stale cached assets after an update. The service worker now clears itself outside production.
 
-### 2.0 · February 2026
+## 2.0 · February 2026
 
 - <Badge text="Added" variant="success" /> Import and Export your library as a JSON backup.
-- <Badge text="Added" variant="success" /> Autoplay Radio — automatically queues related songs once your queue ends.
+- <Badge text="Added" variant="success" /> Autoplay Radio: automatically queues related songs once your queue ends.
 - <Badge text="Added" variant="success" /> Shuffle and repeat modes, preserved across sessions.
-- <Badge text="Improved" variant="note" /> Queue management — reorder by drag, remove individual tracks, clear in one tap.
+- <Badge text="Improved" variant="note" /> Queue management: reorder by drag, remove individual tracks, clear in one tap.
 
-### 1.8 · December 2025
+## 1.8 · December 2025
 
-- <Badge text="Added" variant="success" /> Sign in to sync your library — liked songs, playlists, and history — across every device.
+- <Badge text="Added" variant="success" /> Sign in to sync your library (liked songs, playlists, and history) across every device.
 - <Badge text="Added" variant="success" /> Account menu with profile access and sign out.
 - <Badge text="Improved" variant="note" /> Liked songs and playlists now save instantly instead of on a timer.
 
-### 1.6 · October 2025
+## 1.6 · October 2025
 
-- <Badge text="Added" variant="success" /> Accent colour picker — 17 colours to personalise the app.
-- <Badge text="Added" variant="success" /> Sleep timer — pause playback automatically after a set time.
+- <Badge text="Added" variant="success" /> Accent colour picker: 17 colours to personalise the app.
+- <Badge text="Added" variant="success" /> Sleep timer: pause playback automatically after a set time.
 - <Badge text="Added" variant="success" /> Synced lyrics in the expanded player.
 - <Badge text="Fixed" variant="caution" /> Songs occasionally failing to resume after a network drop.
 
-### 1.4 · August 2025
+## 1.4 · August 2025
 
 - <Badge text="Added" variant="success" /> Recently played history.
 - <Badge text="Added" variant="success" /> Dark, light, and system theme options.
 - <Badge text="Improved" variant="note" /> Search results now group songs, albums, artists, and playlists separately.
 
-### 1.2 · June 2025
+## 1.2 · June 2025
 
-- <Badge text="Added" variant="success" /> Library — like songs, create and manage playlists.
+- <Badge text="Added" variant="success" /> Library: like songs, create and manage playlists.
 - <Badge text="Added" variant="success" /> Full-screen player with queue view.
 - <Badge text="Fixed" variant="caution" /> Playback occasionally stopping when switching browser tabs.
 
-### 1.0 · April 2025
+## 1.0 · April 2025
 
 - <Badge text="Added" variant="success" /> Initial release.
 - <Badge text="Added" variant="success" /> Browse and search YouTube Music.
 - <Badge text="Added" variant="success" /> Background playback with media session controls.
-- <Badge text="Added" variant="success" /> Basic queue — play next, add to queue.
+- <Badge text="Added" variant="success" /> Basic queue: play next, add to queue.
 
+
+</TabItem>
+
+</Tabs>

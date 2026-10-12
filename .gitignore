@@ -21,8 +21,14 @@ pnpm-debug.log*
 .DS_Store
 
 
+# APKs go on GitHub Releases, never in the repo
+*.apk
+
 # Local-only: design mockups
 /design/
 
 # Local-only: the database reference for every Similynk app
 /supabase/
+
+# Local-only: release text to paste into GitHub Releases
+/releases.md

@@ -1,0 +1,3 @@
+{
+  "redirects": [{ "source": "/downloads/:file", "destination": "/#download", "permanent": true }]
+}

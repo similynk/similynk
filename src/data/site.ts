@@ -1,38 +1,40 @@
 // Everything that changes with a release lives here.
-import { statSync } from 'node:fs';
 
 export const version = '1.0.0';
 
+export type App = 'Messenger' | 'Music';
+
 /** The Android apps' versions, as in each app's pubspec.yaml. */
-export const versions = { Messenger: '1.1.0', Music: '2.5.0' } as const;
+export const versions: Record<App, string> = { Messenger: '1.5.0', Music: '2.6.0' };
+
+const sizeMb: Record<App, number> = { Messenger: 21, Music: 22 };
 
 export type Platform = 'web' | 'android' | 'ios';
 
 export interface Download {
-  app: 'Messenger' | 'Music';
+  app: App;
   platform: Platform;
   detail: string;
   href?: string;
-  /** File name the browser saves it as, for direct downloads. */
-  download?: string;
 }
 
-// The Android apps are served from public/downloads; their size is read when the site builds.
-function apk(app: 'Messenger' | 'Music', file: string): Download {
-  let size = '';
-  try {
-    size = ` · ${Math.round(statSync(`public/downloads/${file}`).size / 1_048_576)} MB`;
-  } catch {
-    return { app, platform: 'android', detail: 'Coming soon' };
-  }
-  return {
-    app,
-    platform: 'android',
-    detail: `APK · v${versions[app]}${size}`,
-    href: `/downloads/${file}`,
-    download: file.replace('.apk', `-v${versions[app]}.apk`),
-  };
+// The APKs are files on GitHub Releases, one release per app version,
+// tagged like messenger-v1.1.0 and holding similynk-messenger-v1.1.0.apk
+// and similynk-messenger-v1.1.0-32bit.apk.
+export const RELEASES_PAGE = 'https://github.com/similynk/similynk/releases';
+
+export function apkUrl(app: App, bits: 64 | 32 = 64) {
+  const slug = app.toLowerCase();
+  const v = versions[app];
+  return `${RELEASES_PAGE}/download/${slug}-v${v}/similynk-${slug}-v${v}${bits === 32 ? '-32bit' : ''}.apk`;
 }
+
+const apk = (app: App): Download => ({
+  app,
+  platform: 'android',
+  detail: `APK · v${versions[app]} · ${sizeMb[app]} MB`,
+  href: apkUrl(app),
+});
 
 // The web apps' addresses come from .env (see .env.example); until one is set it shows as coming soon.
 const web = (href: string | undefined): Pick<Download, 'detail' | 'href'> =>
@@ -40,10 +42,10 @@ const web = (href: string | undefined): Pick<Download, 'detail' | 'href'> =>
 
 // Messenger first, then Music, in every group.
 export const downloads: Download[] = [
-  { app: 'Messenger', platform: 'web', ...web(import.meta.env.PUBLIC_MESSENGER_WEB_URL) },
-  { app: 'Music', platform: 'web', ...web(import.meta.env.PUBLIC_MUSIC_WEB_URL) },
-  apk('Messenger', 'similynk-messenger.apk'),
-  apk('Music', 'similynk-music.apk'),
+  { app: 'Messenger', platform: 'web', ...web(import.meta.env.PUBLIC_MESSENGER_URL) },
+  { app: 'Music', platform: 'web', ...web(import.meta.env.PUBLIC_MUSIC_URL) },
+  apk('Messenger'),
+  apk('Music'),
   { app: 'Messenger', platform: 'ios', detail: 'Planned' },
   { app: 'Music', platform: 'ios', detail: 'Planned' },
 ];
@@ -55,6 +57,6 @@ export const platforms: { id: Platform; label: string }[] = [
 ];
 
 export const latest = {
-  badge: 'New in Messenger 1.1: group chats, voice messages and themes',
+  badge: 'New: edit your posts, and invite friends to a room with a link',
   href: '/docs/updates/',
 };
