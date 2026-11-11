@@ -8,7 +8,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Similynk',
-      description: 'A quiet, private place for your family, your friends and the music you share.',
+      description: 'Ship: your words, shipped to your “ships”. Muso: all your ad-free music, free.',
       logo: { src: './src/assets/logo.svg' },
       favicon: '/favicon.svg',
       customCss: ['./src/styles/docs.css'],
@@ -35,7 +35,7 @@ export default defineConfig({
           label: 'Sharing',
           items: [
             { label: 'Posts', slug: 'docs/posts' },
-            { label: 'Music', slug: 'docs/music' },
+            { label: 'Muso', slug: 'docs/muso' },
           ],
         },
         {
@@ -44,6 +44,13 @@ export default defineConfig({
             { label: 'Profile', slug: 'docs/profile' },
             { label: 'Settings', slug: 'docs/settings' },
             { label: 'Updates', slug: 'docs/updates' },
+          ],
+        },
+        {
+          label: 'About',
+          items: [
+            { label: 'Privacy policy', slug: 'docs/privacy' },
+            { label: 'Delete your account', slug: 'docs/delete-account' },
           ],
         },
       ],

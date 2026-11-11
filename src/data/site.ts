@@ -2,12 +2,12 @@
 
 export const version = '1.0.0';
 
-export type App = 'Messenger' | 'Music';
+export type App = 'Ship' | 'Muso';
 
 /** The Android apps' versions, as in each app's pubspec.yaml. */
-export const versions: Record<App, string> = { Messenger: '1.5.0', Music: '2.6.0' };
+export const versions: Record<App, string> = { Ship: '1.3.0', Muso: '1.3.0' };
 
-const sizeMb: Record<App, number> = { Messenger: 21, Music: 22 };
+const sizeMb: Record<App, number> = { Ship: 22, Muso: 24 };
 
 export type Platform = 'web' | 'android' | 'ios';
 
@@ -19,8 +19,8 @@ export interface Download {
 }
 
 // The APKs are files on GitHub Releases, one release per app version,
-// tagged like messenger-v1.1.0 and holding similynk-messenger-v1.1.0.apk
-// and similynk-messenger-v1.1.0-32bit.apk.
+// tagged like ship-v1.3.0 and holding similynk-ship-v1.3.0.apk
+// and similynk-ship-v1.3.0-32bit.apk.
 export const RELEASES_PAGE = 'https://github.com/similynk/similynk/releases';
 
 export function apkUrl(app: App, bits: 64 | 32 = 64) {
@@ -36,18 +36,14 @@ const apk = (app: App): Download => ({
   href: apkUrl(app),
 });
 
-// The web apps' addresses come from .env (see .env.example); until one is set it shows as coming soon.
-const web = (href: string | undefined): Pick<Download, 'detail' | 'href'> =>
-  href ? { detail: 'Open in your browser', href } : { detail: 'Coming soon' };
-
-// Messenger first, then Music, in every group.
+// Ship first, then Muso, in every group.
 export const downloads: Download[] = [
-  { app: 'Messenger', platform: 'web', ...web(import.meta.env.PUBLIC_MESSENGER_URL) },
-  { app: 'Music', platform: 'web', ...web(import.meta.env.PUBLIC_MUSIC_URL) },
-  apk('Messenger'),
-  apk('Music'),
-  { app: 'Messenger', platform: 'ios', detail: 'Planned' },
-  { app: 'Music', platform: 'ios', detail: 'Planned' },
+  { app: 'Ship', platform: 'web', detail: 'Open in your browser', href: 'https://ship.similynk.com' },
+  { app: 'Muso', platform: 'web', detail: 'Open in your browser', href: 'https://muso.similynk.com' },
+  apk('Ship'),
+  apk('Muso'),
+  { app: 'Ship', platform: 'ios', detail: 'Planned' },
+  { app: 'Muso', platform: 'ios', detail: 'Planned' },
 ];
 
 export const platforms: { id: Platform; label: string }[] = [
@@ -57,6 +53,6 @@ export const platforms: { id: Platform; label: string }[] = [
 ];
 
 export const latest = {
-  badge: 'New: edit your posts, and invite friends to a room with a link',
+  badge: 'New: meet Ship and Muso, with a new family tree',
   href: '/docs/updates/',
 };

@@ -4,33 +4,34 @@
 
 # Similynk
 
-### Stay close to the people who matter.
+### Your people and your music, kept close.
 
 </div>
 
-A quiet, private place for your family, your friends and the music you share.
-No ads, no strangers, nothing to scroll past.
+With Ship, your words are shipped to your “ships”: your family, your friends and
+every bond in between. With Muso, all your ad-free music, free. No strangers,
+nothing to scroll past.
 
 ---
 
 ## One account, every app
 
-### 💬 Similynk Messenger
+### 💬 Ship
 
-A private space for the people you actually know.
+Your words, shipped to your “ships”. One private place to talk with your family, your friends and every bond in between.
 
 - **Your family, mapped.** Build your family tree together. Every relationship
   is confirmed by both people, and only your family can see who's in it.
 - **Circles for everyone else.** School, college, work and friends each get
   their own circle, joined with a short invite code.
 - **Chats that keep up.** One-to-one and group chats with photos, voice
-  messages, replies, reactions and songs shared straight from Music.
+  messages, replies, reactions and songs shared straight from Muso.
 - **Share with exactly who you mean.** Post moments to your family, your whole
   tree or a single circle. Nothing goes further than you decide.
 
-### 🎵 Similynk Music
+### 🎵 Muso
 
-Free music streaming, ad free, that remembers you and the people you listen with.
+All your ad-free music, free. Your library on every device, and rooms to listen together.
 
 - **Plays everywhere.** Background playback, lock-screen controls, a queue you
   can reorder, a sleep timer and synced lyrics.
@@ -61,8 +62,8 @@ Free music streaming, ad free, that remembers you and the people you listen with
 
 | | Android | Web | iOS |
 |---|---|---|---|
-| **Messenger** | [Download](https://www.similynk.com/#download) | [Open in your browser](https://messenger.similynk.com) | Planned |
-| **Music** | [Download](https://www.similynk.com/#download) | [Open in your browser](https://music.similynk.com) | Planned |
+| **Ship** | [Download](https://www.similynk.com/#download) | [Open in your browser](https://ship.similynk.com) | Planned |
+| **Muso** | [Download](https://www.similynk.com/#download) | [Open in your browser](https://muso.similynk.com) | Planned |
 
 The download page always has the latest version.
 

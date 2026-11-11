@@ -7,7 +7,7 @@ You can message your family and anyone in your circles. To message someone else,
 
 ## Messages
 
-- Send text, **photos** and **voice messages** (hold the mic, up to 2 minutes). Songs shared from Similynk Music play in Music when you tap them.
+- Send text, **photos** and **voice messages** (hold the mic, up to 2 minutes). Songs shared from Muso play in Muso when you tap them.
 - **Reply** by swiping a message to the right (or hovering it on the web). Tap the quote to jump to the original.
 - **React** with an emoji, **edit** your message within 15 minutes, or **delete it for everyone**.
 - **Forward** any message to one or more of your chats, and **copy** its text.

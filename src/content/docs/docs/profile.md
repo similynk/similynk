@@ -9,4 +9,4 @@ Your profile shows your name, photo, banner, bio, followers and connections, and
 - Tap the **pencil** on your banner to pick one of the preset banners.
 - Edit your **bio** from your profile.
 
-Your profile is the same in Messenger and Music: change it in one and the other shows it too. From someone's profile you can **message** them, or play a song they share in Similynk Music.
+Your profile is the same in Ship and Muso: change it in one and the other shows it too. From someone's profile you can **message** them, or play a song they share in Muso.

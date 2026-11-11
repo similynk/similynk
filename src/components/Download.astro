@@ -15,7 +15,7 @@ import { downloads, platforms } from '../data/site';
             {downloads
               .filter((d) => d.platform === p.id)
               .map((d) => {
-                const icon = p.id === 'ios' ? 'apple' : d.app === 'Messenger' ? 'messenger' : 'music';
+                const icon = p.id === 'ios' ? 'apple' : d.app === 'Ship' ? 'ship' : 'muso';
                 const body = (
                   <>
                     <span class="ic">
