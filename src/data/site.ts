@@ -5,7 +5,7 @@ export const version = '1.0.0';
 export type App = 'Ship' | 'Muso';
 
 /** The Android apps' versions, as in each app's pubspec.yaml. */
-export const versions: Record<App, string> = { Ship: '1.3.0', Muso: '1.3.0' };
+export const versions: Record<App, string> = { Ship: '1.3.1', Muso: '1.3.1' };
 
 const sizeMb: Record<App, number> = { Ship: 22, Muso: 24 };
 
@@ -18,15 +18,18 @@ export interface Download {
   href?: string;
 }
 
-// The APKs are files on GitHub Releases, one release per app version,
-// tagged like ship-v1.3.0 and holding similynk-ship-v1.3.0.apk
-// and similynk-ship-v1.3.0-32bit.apk.
+// The APKs are files on GitHub Releases, named like similynk-ship-v1.3.1.apk and
+// similynk-ship-v1.3.1-32bit.apk. When both apps update together they share one
+// release; an app that updates on its own gets its own tag here.
+/** The GitHub release tag that holds each app's current APKs. */
+export const releaseTags: Record<App, string> = { Ship: 'similynk-v1.3.1', Muso: 'similynk-v1.3.1' };
+
 export const RELEASES_PAGE = 'https://github.com/similynk/similynk/releases';
 
 export function apkUrl(app: App, bits: 64 | 32 = 64) {
   const slug = app.toLowerCase();
   const v = versions[app];
-  return `${RELEASES_PAGE}/download/${slug}-v${v}/similynk-${slug}-v${v}${bits === 32 ? '-32bit' : ''}.apk`;
+  return `${RELEASES_PAGE}/download/${releaseTags[app]}/similynk-${slug}-v${v}${bits === 32 ? '-32bit' : ''}.apk`;
 }
 
 const apk = (app: App): Download => ({
@@ -53,6 +56,6 @@ export const platforms: { id: Platform; label: string }[] = [
 ];
 
 export const latest = {
-  badge: 'New: meet Ship and Muso, with a new family tree',
+  badge: 'New: usernames, chat looks and posts for family and circles at once',
   href: '/docs/updates/',
 };
