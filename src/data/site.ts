@@ -56,6 +56,6 @@ export const platforms: { id: Platform; label: string }[] = [
 ];
 
 export const latest = {
-  badge: 'New: usernames, chat looks and posts for family and circles at once',
+  badge: 'New: usernames, chat themes, group photos and circle invite links',
   href: '/docs/updates/',
 };
