@@ -5,7 +5,7 @@ export const version = '1.0.0';
 export type App = 'Ship' | 'Muso';
 
 /** The Android apps' versions, as in each app's pubspec.yaml. */
-export const versions: Record<App, string> = { Ship: '1.3.1', Muso: '1.3.1' };
+export const versions: Record<App, string> = { Ship: '1.3.2', Muso: '1.3.2' };
 
 const sizeMb: Record<App, number> = { Ship: 22, Muso: 24 };
 
@@ -22,7 +22,7 @@ export interface Download {
 // similynk-ship-v1.3.1-32bit.apk. When both apps update together they share one
 // release; an app that updates on its own gets its own tag here.
 /** The GitHub release tag that holds each app's current APKs. */
-export const releaseTags: Record<App, string> = { Ship: 'similynk-v1.3.1', Muso: 'similynk-v1.3.1' };
+export const releaseTags: Record<App, string> = { Ship: 'similynk-v1.3.2', Muso: 'similynk-v1.3.2' };
 
 export const RELEASES_PAGE = 'https://github.com/similynk/similynk/releases';
 
