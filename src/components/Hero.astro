@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import ProductShot from './ProductShot.astro';
+import TreeBand from './TreeBand.astro';
 import { latest } from '../data/site';
 
 const drops = [
@@ -30,7 +30,7 @@ const drops = [
   </svg>
 
   <div class="wrap copy">
-    <a class="badge" href={latest.href}><b>NEW</b>{latest.badge}</a>
+    <a class="badge" href={latest.href}><b>NEW</b><span>{latest.badge}</span></a>
     <h1>Your people and your music, kept close.</h1>
     <p class="lede">
       With Ship, your words are shipped to your “ships”: your family, your friends and every bond in between. With
@@ -42,14 +42,14 @@ const drops = [
     </div>
   </div>
 
-  <ProductShot />
+  <TreeBand />
 </section>
 
 <style>
   .hero {
     position: relative;
     overflow: hidden;
-    padding-block: 120px 0;
+    padding-block: 120px 36px;
     text-align: center;
   }
   .rain {
@@ -89,6 +89,8 @@ const drops = [
     gap: 22px;
   }
   .badge {
+    max-width: calc(100% - 32px);
+    text-align: left;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -103,6 +105,9 @@ const drops = [
   .badge:hover {
     color: var(--ink);
     border-color: var(--ink-3);
+  }
+  .badge span {
+    min-width: 0;
   }
   .badge b {
     font: 600 11px var(--mono);
@@ -139,7 +144,7 @@ const drops = [
   }
   @media (max-width: 600px) {
     .hero {
-      padding-block: 72px 0;
+      padding-block: 72px 28px;
     }
   }
 </style>

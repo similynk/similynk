@@ -11,8 +11,8 @@ const stats = [
     <div class="kicker">
       <h2>Built for connection, not attention.</h2>
       <p>
-        Most social apps are designed to keep you scrolling. Similynk is designed to let you catch up with the
-        people you love, then get on with your day.
+        Most social apps are designed to keep you scrolling. Similynk lets you catch up with the people you love, then
+        get on with your day.
       </p>
     </div>
     <div class="stats">
@@ -25,55 +25,40 @@ const stats = [
         ))
       }
     </div>
-    <p class="note">
-      Strangers can't find you by name. To reach you, someone needs your exact email or phone number, or a place in
-      your family or circles. <a href="/docs/chats/">Who can message you →</a>
-    </p>
   </div>
 </section>
 
 <style>
   .stats {
-    margin-top: 48px;
+    margin-top: 44px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     border: 1px solid var(--line-2);
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
   }
   .stat {
-    padding: 28px 26px;
+    padding: 30px 28px;
     display: grid;
-    gap: 8px;
+    gap: 6px;
     min-width: 0;
   }
   .stat + .stat {
     border-left: 1px solid var(--line-2);
   }
   .stat b {
-    font: 500 clamp(40px, 5vw, 54px) var(--mono);
-    letter-spacing: -0.04em;
-    color: var(--accent-ink);
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
     line-height: 1;
+    color: var(--accent-ink);
   }
   .stat span {
-    font-size: 14.5px;
     color: var(--ink-2);
   }
-  .note {
-    margin-top: 18px;
-    font-size: 14px;
-    color: var(--ink-3);
-    max-width: 62ch;
-  }
-  .note a {
-    color: var(--accent-ink);
-    text-decoration: none;
-    font-weight: 600;
-  }
-  @media (max-width: 900px) {
+  @media (max-width: 760px) {
     .stats {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
     .stat + .stat {
       border-left: 0;

@@ -1,126 +1,446 @@
 ---
-import Icon from './Icon.astro';
-import { downloads, platforms } from '../data/site';
+import { apkUrl, sizeMb, versions, webApps, type App } from '../data/site';
+
+const apps: App[] = ['Ship', 'Muso'];
+const icon = (app: App) => `/${app.toLowerCase()}-icon.svg`;
+
+// Drawn stand-ins for each app's screens until real screenshots replace them.
+const phoneShots: Record<App, { title: string; bg?: string; body: string }[]> = {
+  Ship: [
+    { title: 'Chats', body: 'rows-round' },
+    { title: 'Family', body: 'tree' },
+    { title: 'Stories', body: 'story' },
+    { title: 'Feed', body: 'feed' },
+  ],
+  Muso: [
+    { title: 'Trending', bg: 'linear-gradient(170deg,#2a1550,#030308 60%)', body: 'rows-cover' },
+    { title: 'Player', bg: 'linear-gradient(170deg,#7c2d12,#030308 65%)', body: 'player' },
+    { title: 'Library', body: 'rows-square' },
+    { title: 'Rooms', body: 'faces' },
+  ],
+};
+const webShots: Record<App, { path: string; on: number; body: string }[]> = {
+  Ship: [
+    { path: 'chats', on: 0, body: 'rows-round' },
+    { path: 'family', on: 1, body: 'tree' },
+  ],
+  Muso: [
+    { path: 'trending', on: 0, body: 'rows-cover' },
+    { path: 'rooms', on: 3, body: 'faces' },
+  ],
+};
+const colours = ['#be185d', '#4f46e5', '#0f766e', '#92400e'];
+const covers = ['#f59e0b,#be185d', '#0ea5e9,#4f46e5', '#22c55e,#0f766e'];
 ---
 
-<section class="download" id="download">
+<section class="band alt" id="download">
   <div class="wrap">
-    <h2>Download <em>Similynk</em></h2>
-    <p class="sub">Free, private and quiet. Sign in with Google.</p>
-    {
-      platforms.map((p) => (
-        <>
-          <div class="label">{p.label}</div>
-          <div class="tiles">
-            {downloads
-              .filter((d) => d.platform === p.id)
-              .map((d) => {
-                const icon = p.id === 'ios' ? 'apple' : d.app === 'Ship' ? 'ship' : 'muso';
-                const body = (
-                  <>
-                    <span class="ic">
-                      <Icon name={icon} />
-                    </span>
-                    <span>
-                      <b>{d.app}</b>
-                      <small>{d.detail}</small>
-                    </span>
-                  </>
-                );
-                return d.href ? (
-                  <a class="dl" href={d.href}>
-                    {body}
-                  </a>
-                ) : (
-                  <span class="dl off">{body}</span>
-                );
-              })}
+    <div class="kicker">
+      <h2>Get Ship and Muso.</h2>
+      <p>One Similynk account signs you in to both, on your phone and on the web.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Platform">
+      <button type="button" role="tab" id="tab-android" aria-selected="true" aria-controls="pane-android">Android</button>
+      <button type="button" role="tab" id="tab-web" aria-selected="false" aria-controls="pane-web" tabindex="-1">Web</button>
+      <button type="button" role="tab" id="tab-ios" aria-selected="false" aria-controls="pane-ios" tabindex="-1">iPhone</button>
+    </div>
+
+    <div role="tabpanel" id="pane-android" aria-labelledby="tab-android" class="grid">
+      {
+        apps.map((app) => (
+          <div class="card">
+            <header>
+              <img src={icon(app)} alt="" width="44" height="44" />
+              <span>
+                <b>{app}</b>
+                <small>v{versions[app]} · {sizeMb[app]} MB · Android 7+</small>
+              </span>
+            </header>
+            <div class="shots" aria-label={`${app} on Android`}>
+              {phoneShots[app].map((s) => (
+                <div class="shot" style={s.bg ? `background:${s.bg}` : undefined}>
+                  <span class="ttl">{s.title}</span>
+                  {s.body.startsWith('rows') &&
+                    colours.slice(0, 4).map((c, i) => (
+                      <div class="mrow">
+                        <span
+                          class={`sq ${s.body === 'rows-round' ? 'round' : ''}`}
+                          style={`background:${s.body === 'rows-cover' ? `linear-gradient(135deg,${covers[i % 3]})` : c}`}
+                        />
+                        <span class="ln" />
+                      </div>
+                    ))}
+                  {s.body === 'tree' && (
+                    <svg viewBox="0 0 120 110" class="mini-tree">
+                      <path d="M40 22H80M60 22V46M30 46H90M30 46V70M90 46V70M60 46V70" fill="none" stroke="#5c5d68" stroke-width="1.5" />
+                      <path d="M60 46V70" stroke="#e25e00" stroke-width="2" />
+                      <circle cx="40" cy="22" r="9" fill="#4f46e5" />
+                      <circle cx="80" cy="22" r="9" fill="#be185d" />
+                      <circle cx="30" cy="80" r="9" fill="#0f766e" />
+                      <circle cx="60" cy="80" r="10" fill="#e25e00" />
+                      <circle cx="90" cy="80" r="9" fill="#92400e" />
+                    </svg>
+                  )}
+                  {s.body === 'story' && <div class="fill" style="background:linear-gradient(160deg,#f59e0b,#be185d 70%)" />}
+                  {s.body === 'feed' && (
+                    <>
+                      <div class="pic" style="background:linear-gradient(135deg,#0f766e,#1b6ca8)" />
+                      <span class="ln" />
+                      <span class="ln short" />
+                    </>
+                  )}
+                  {s.body === 'player' && (
+                    <>
+                      <div class="art" style="background:linear-gradient(135deg,#f59e0b,#be185d)" />
+                      <span class="ln" />
+                      <span class="ln progress" />
+                    </>
+                  )}
+                  {s.body === 'faces' && (
+                    <div class="faces">
+                      <i style="background:#0f766e">E</i>
+                      <i style="background:#be185d">C</i>
+                      <i style="background:#4f46e5">L</i>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div class="get">
+              <a class="btn primary" href={apkUrl(app)}>Download {app}</a>
+              <small>
+                Older phone? <a href={apkUrl(app, 32)}>32-bit version</a>
+              </small>
+            </div>
           </div>
-        </>
-      ))
-    }
-    <a class="all" href="/docs/updates/">All updates<Icon name="arrow" size={15} /></a>
+        ))
+      }
+    </div>
+
+    <div role="tabpanel" id="pane-web" aria-labelledby="tab-web" class="grid" hidden>
+      {
+        apps.map((app) => (
+          <div class="card">
+            <header>
+              <img src={icon(app)} alt="" width="44" height="44" />
+              <span>
+                <b>{app} on the web</b>
+                <small>{webApps[app].replace('https://', '')}</small>
+              </span>
+            </header>
+            <div class="shots" aria-label={`${app} on the web`}>
+              {webShots[app].map((s) => (
+                <div class="shot web">
+                  <div class="chrome">
+                    <i />
+                    <i />
+                    <i />
+                    <span>
+                      {webApps[app].replace('https://', '')}/{s.path}
+                    </span>
+                  </div>
+                  <div class="wbody">
+                    <div class="wside">
+                      {[0, 1, 2, 3].map((n) => (
+                        <i class={n === s.on ? 'on' : undefined} />
+                      ))}
+                    </div>
+                    <div class="wmain">
+                      {s.body.startsWith('rows') &&
+                        colours.slice(0, 3).map((c, i) => (
+                          <div class="mrow">
+                            <span
+                              class={`sq ${s.body === 'rows-round' ? 'round' : ''}`}
+                              style={`background:${s.body === 'rows-cover' ? `linear-gradient(135deg,${covers[i]})` : c}`}
+                            />
+                            <span class="ln" />
+                          </div>
+                        ))}
+                      {s.body === 'tree' && (
+                        <svg viewBox="0 0 120 70" class="mini-tree web-tree">
+                          <path d="M40 12H80M60 12V36M30 36H90M30 36V48M90 36V48" fill="none" stroke="#5c5d68" stroke-width="1.5" />
+                          <path d="M60 36V48" stroke="#e25e00" stroke-width="2" />
+                          <circle cx="40" cy="12" r="7" fill="#4f46e5" />
+                          <circle cx="80" cy="12" r="7" fill="#be185d" />
+                          <circle cx="30" cy="55" r="7" fill="#0f766e" />
+                          <circle cx="60" cy="55" r="8" fill="#e25e00" />
+                          <circle cx="90" cy="55" r="7" fill="#92400e" />
+                        </svg>
+                      )}
+                      {s.body === 'faces' && (
+                        <div class="faces center">
+                          <i style="background:#0f766e">E</i>
+                          <i style="background:#be185d">C</i>
+                          <i style="background:#4f46e5">L</i>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div class="get">
+              <a class="btn primary" href={webApps[app]}>Open {app}</a>
+              <small>{app === 'Ship' ? 'Install it from your browser as an app.' : 'Works in any modern browser.'}</small>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div role="tabpanel" id="pane-ios" aria-labelledby="tab-ios" hidden>
+      <div class="planned">
+        <b>iPhone apps are planned.</b>
+        <span>Until then, open Ship and Muso on the web and add them to your home screen.</span>
+      </div>
+    </div>
+
+    <a class="all" href="/docs/installing/">How to install the Android apps →</a>
   </div>
 </section>
 
 <style>
-  .download {
-    text-align: center;
-    padding-block: 120px 96px;
-    border-top: 1px solid var(--line);
+  .kicker {
+    margin-bottom: 32px;
   }
-  h2 {
-    font-size: clamp(36px, 5vw, 54px);
-  }
-  h2 em {
-    font-style: normal;
-    color: var(--accent-ink);
-  }
-  .sub {
-    margin-top: 12px;
-    color: var(--ink-2);
-    font-size: 17px;
-  }
-  .label {
-    margin-top: 44px;
-    font: 500 12px var(--mono);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .tiles {
-    margin: 14px auto 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    max-width: 860px;
-  }
-  .dl {
-    width: 240px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
+  .tabs {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
     border-radius: 14px;
     border: 1px solid var(--line-2);
     background: var(--panel);
-    text-decoration: none;
-    text-align: left;
-    transition: border-color 0.15s, transform 0.15s;
+    margin-bottom: 28px;
   }
-  a.dl:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-  .ic {
-    width: 34px;
-    height: 34px;
+  .tabs button {
+    border: 0;
+    background: none;
+    padding: 9px 18px;
     border-radius: 10px;
-    background: var(--bg-2);
+    font: 700 14.5px var(--font);
+    color: var(--ink-2);
+    cursor: pointer;
+  }
+  .tabs button[aria-selected='true'] {
+    background: var(--accent);
+    color: #fff;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+  .card {
+    border: 1px solid var(--line-2);
+    border-radius: 22px;
+    background: var(--panel);
+    overflow: hidden;
+    display: grid;
+    min-width: 0;
+  }
+  .card header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+  .card header img {
+    border-radius: 12px;
+  }
+  .card header b {
+    font-size: 19px;
+    font-weight: 800;
+    display: block;
+  }
+  .card header small {
+    color: var(--ink-3);
+    font: 500 12px var(--mono);
+  }
+  .shots {
+    display: flex;
+    gap: 12px;
+    padding: 4px 20px 20px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .shot {
+    flex: none;
+    width: 150px;
+    aspect-ratio: 9 / 19;
+    border-radius: 22px;
+    border: 5px solid #000;
+    background: var(--app);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 9px 9px;
+    gap: 6px;
+    color: var(--app-ink);
+    font-size: 9.5px;
+  }
+  .shot.web {
+    width: 300px;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    border: 1px solid var(--line-2);
+    padding: 0;
+  }
+  .ttl {
+    font-weight: 800;
+    font-size: 12px;
+  }
+  .mrow {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  .sq {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    flex: none;
+  }
+  .sq.round {
+    border-radius: 50%;
+  }
+  .ln {
+    flex: 1;
+    display: block;
+    height: 6px;
+    border-radius: 3px;
+    background: #23242e;
+  }
+  .ln.short {
+    flex: none;
+    width: 60%;
+  }
+  .ln.progress {
+    flex: none;
+    width: 45%;
+    background: var(--accent);
+  }
+  .mini-tree {
+    width: 100%;
+  }
+  .web-tree {
+    width: 80%;
+    justify-self: center;
+  }
+  .fill {
+    flex: 1;
+    border-radius: 10px;
+  }
+  .pic {
+    height: 70px;
+    border-radius: 8px;
+  }
+  .art {
+    aspect-ratio: 1;
+    border-radius: 10px;
+  }
+  .faces {
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+  }
+  .faces.center {
+    align-self: center;
+  }
+  .faces i {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--app);
+    margin-left: -7px;
     display: grid;
     place-items: center;
-    color: var(--ink);
-    flex: 0 0 auto;
+    font-style: normal;
+    font-size: 10px;
+    font-weight: 800;
+    color: #fff;
   }
-  .dl b {
-    display: block;
-    font-size: 14.5px;
+  .faces i:first-child {
+    margin-left: 0;
   }
-  .dl small {
+  .chrome {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 9px;
+    background: #16171f;
+    border-bottom: 1px solid var(--app-line);
+  }
+  .chrome i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #3a3b45;
+  }
+  .chrome span {
+    flex: 1;
+    margin-left: 8px;
+    background: #0d0e14;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font: 500 9px var(--mono);
+    color: var(--app-mute);
+  }
+  .wbody {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    min-height: 0;
+  }
+  .wside {
+    border-right: 1px solid var(--app-line);
+    padding: 8px;
+    display: grid;
+    gap: 5px;
+    align-content: start;
+  }
+  .wside i {
+    height: 7px;
+    border-radius: 4px;
+    background: #23242e;
     display: block;
-    font: 500 11.5px var(--mono);
+  }
+  .wside i.on {
+    background: var(--accent);
+  }
+  .wmain {
+    padding: 8px;
+    display: grid;
+    gap: 5px;
+    align-content: start;
+    min-width: 0;
+  }
+  .get {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 20px 20px;
+    align-items: center;
+  }
+  .get small {
     color: var(--ink-3);
+    font-size: 12.5px;
   }
-  .off {
-    opacity: 0.55;
-    border-style: dashed;
+  .planned {
+    border: 1px dashed var(--line-2);
+    border-radius: 22px;
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--ink-2);
+    display: grid;
+    gap: 4px;
+  }
+  .planned b {
+    color: var(--ink);
   }
   .all {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 36px;
+    display: inline-block;
+    margin-top: 28px;
     font-size: 14px;
     font-weight: 600;
     color: var(--ink-2);
@@ -129,17 +449,30 @@ import { downloads, platforms } from '../data/site';
   .all:hover {
     color: var(--ink);
   }
-  @media (prefers-reduced-motion: reduce) {
-    .dl {
-      transition: none;
-    }
-  }
-  @media (max-width: 600px) {
-    .download {
-      padding-block: 80px 72px;
-    }
-    .dl {
-      width: 100%;
+  @media (max-width: 960px) {
+    .grid {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>
+
+<script>
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('#download [role="tab"]')];
+  const show = (tab: HTMLButtonElement) => {
+    for (const t of tabs) {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')!)!.hidden = !on;
+    }
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => show(t));
+    t.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      show(next);
+      next.focus();
+    });
+  });
+</script>

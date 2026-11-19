@@ -1,0 +1,65 @@
+---
+import { latest, whatsNew } from '../data/site';
+---
+
+<div class="new" id="new">
+  <div class="wrap">
+    <span class="label">NEW IN {whatsNew.version}</span>
+    <div class="items">
+      {
+        whatsNew.items.map((i) => (
+          <a href={i.href}>
+            <b>{i.bold}</b>
+            {i.rest && <span>{i.rest}</span>}
+          </a>
+        ))
+      }
+      <a href={latest.href}>All updates →</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .new {
+    padding-block: 26px;
+    border-top: 1px solid var(--line);
+  }
+  .wrap {
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .label {
+    font: 600 12px var(--mono);
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+  }
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-width: 0;
+  }
+  a {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    max-width: 100%;
+    padding: 9px 14px;
+    border: 1px solid var(--line-2);
+    border-radius: 12px;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--ink-2);
+    background: var(--panel);
+    transition: border-color 0.15s;
+  }
+  a:hover {
+    border-color: var(--ink-3);
+  }
+  b {
+    color: var(--ink);
+  }
+</style>

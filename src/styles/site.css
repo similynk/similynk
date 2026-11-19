@@ -21,6 +21,16 @@
   --shadow: 0 40px 120px -30px rgba(226, 94, 0, 0.35);
   --font: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+  /* The apps are always dark, so their screens keep these in both themes. */
+  --app: #0a0b11;
+  --app-2: #15151c;
+  --app-3: #1c1f2a;
+  --app-line: #272830;
+  --app-ink: #f0eeeb;
+  --app-mute: #7e7f89;
+  --wire: #5c5d68;
+  --heart: #e54151;
+  --green: #22c55e;
   color-scheme: dark;
 }
 
@@ -38,6 +48,7 @@
     --accent-wash: rgba(226, 94, 0, 0.09);
     --rain: rgba(0, 0, 0, 0.05);
     --rain-drop: rgba(226, 94, 0, 0.45);
+    --wire: #b3b4bc;
     --shadow: 0 40px 100px -40px rgba(18, 19, 24, 0.35);
     color-scheme: light;
   }
@@ -56,6 +67,7 @@
   --accent-wash: rgba(226, 94, 0, 0.09);
   --rain: rgba(0, 0, 0, 0.05);
   --rain-drop: rgba(226, 94, 0, 0.45);
+  --wire: #b3b4bc;
   --shadow: 0 40px 100px -40px rgba(18, 19, 24, 0.35);
   color-scheme: light;
 }

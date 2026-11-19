@@ -49,7 +49,10 @@ export default defineConfig({
         {
           label: 'About',
           items: [
+            { label: 'Support', slug: 'docs/support' },
             { label: 'Privacy policy', slug: 'docs/privacy' },
+            { label: 'Terms of service', slug: 'docs/terms' },
+            { label: 'Child safety standards', slug: 'docs/child-safety' },
             { label: 'Delete your account', slug: 'docs/delete-account' },
           ],
         },

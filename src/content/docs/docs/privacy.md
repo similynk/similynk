@@ -3,7 +3,7 @@ title: Privacy policy
 description: What Ship and Muso collect, why, who can see it, and how to download or delete it.
 ---
 
-_Last updated: 11 November 2026_
+_Last updated: 19 November 2026_
 
 Similynk makes **Ship** and **Muso**: the Android apps and the websites at ship.similynk.com, muso.similynk.com and www.similynk.com. This page explains what we collect, why, and the choices you have. We don't sell your data, we don't show ads, and we don't use advertising or analytics trackers.
 
@@ -15,13 +15,17 @@ Similynk makes **Ship** and **Muso**: the Android apps and the websites at ship.
 
 **Your family and circles.** The relatives you add (including people added by name only), how you are related, and the circles you create or join.
 
-**What you share in Ship.** Messages, photos and voice messages in chats, reactions, posts, comments and likes, memories and milestones, and anything you report to us.
+**What you share in Ship.** Messages, photos, videos and voice messages in chats, your location when you choose to share it in a chat, stories, reactions, posts, comments and likes, memories and milestones, and anything you report to us.
 
-**Your music in Muso.** Liked songs, albums and artists, playlists, play history and counts, your listening streak, the listening rooms you create or join, and issue reports you file.
+**Your music in Muso.** Liked songs, albums and artists, playlists, play history and counts, your listening streak, the listening rooms you create or join, playlists you import from a Spotify or JioSaavn link, and issue reports you file.
 
 **How you use the apps.** Which Similynk apps you use and when you last opened them, and, if you leave them switched on, when you were last online and whether you have read a message. You can turn last seen and read receipts off in Settings.
 
-**On your phone.** Your settings, saved copies of chats, family and profiles so they open without internet, and songs you download. These stay on your device and are removed when you clear the app's storage or uninstall it.
+**On your phone.** Your settings, saved copies of chats, family and profiles so they open without internet, and songs you download. Chats saved on your phone are encrypted. These stay on your device and are removed when you clear the app's storage or uninstall it.
+
+**Your music files.** If you allow it, Muso reads the music files already on your phone so you can play them. They stay on your phone and are never uploaded.
+
+**Chat lock.** If you lock a chat, Android checks your fingerprint or screen lock. We never receive your fingerprint.
 
 ## Why we use it
 
@@ -32,7 +36,7 @@ Similynk makes **Ship** and **Muso**: the Android apps and the websites at ship.
 
 ## Who can see it
 
-Your posts, profile details and connections follow the visibility you choose. Chats are seen only by the people in them. Nobody can find you by searching your name: someone needs your exact email or phone number, or a place in your family or circles.
+Your posts, profile details and connections follow the visibility you choose. Chats are seen only by the people in them. Stories disappear after 24 hours, and in a chat with disappearing messages on, messages are deleted after the time you pick. Nobody can find you by searching your name: someone needs your exact username, email or phone number, or a place in your family or circles.
 
 ## Services we use
 
@@ -41,6 +45,8 @@ Your posts, profile details and connections follow the visibility you choose. Ch
 - **Google** provides Google sign-in.
 - **YouTube** supplies the music in Muso. When you play a song, it is requested from YouTube.
 - **LRCLIB** supplies song lyrics. Muso sends it the song's title and artist, nothing about you.
+- **Spotify and JioSaavn**: when you import a playlist, our server reads the public playlist from the link you paste. Nothing about you is sent.
+- **OpenStreetMap** draws the map for a location shared in a chat. Tapping it opens Google Maps.
 
 These providers only process data to run the service for us.
 
@@ -59,7 +65,7 @@ Deleted data may remain in our provider's backups for a short time before it is 
 
 ## Children
 
-Ship and Muso are not meant for children under 13, and we don't knowingly collect their data.
+Ship and Muso are not meant for children under 13, and we don't knowingly collect their data. See our [Child safety standards](/docs/child-safety/).
 
 ## Changes and contact
 

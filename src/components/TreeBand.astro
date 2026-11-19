@@ -1,0 +1,343 @@
+---
+// A made-up family drawn under the hero. Its upright lines sit on the hero's
+// background hairlines (every 22px), and the line from "You" to someone lights up.
+---
+
+<div class="bt" id="bt">
+  <svg id="bt-svg" role="img" aria-label="An example family. Tap anyone to see how they're related to you."></svg>
+  <p class="bt-say" id="bt-say" aria-live="polite"></p>
+</div>
+
+<style is:global>
+  .bt {
+    position: relative;
+    margin-top: 60px;
+    height: 452px;
+    text-align: left;
+  }
+  .bt svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .bt .line,
+  .bt .hot {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .bt .line {
+    stroke: var(--wire);
+    stroke-width: 1.6;
+  }
+  .bt .hot {
+    stroke: var(--accent);
+    stroke-width: 2.4;
+  }
+  .bt .p {
+    cursor: pointer;
+  }
+  .bt .p:focus-visible {
+    outline: none;
+  }
+  .bt .p:focus-visible .ring,
+  .bt .p.on .ring {
+    stroke: var(--accent);
+  }
+  .bt .name {
+    fill: var(--ink);
+    font: 800 12px var(--font);
+  }
+  .bt .word {
+    fill: var(--ink-3);
+    font: 600 10.5px var(--font);
+  }
+  .bt .p.on .word {
+    fill: var(--accent-ink);
+  }
+  .bt .heart-bg {
+    fill: var(--bg);
+  }
+  .bt-say {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    translate: -50% 0;
+    max-width: calc(100% - 32px);
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    background: var(--panel);
+    font-size: 14.5px;
+    color: var(--ink-2);
+    text-align: center;
+  }
+  .bt-say b {
+    color: var(--ink);
+  }
+  .bt-pill {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 10px 5px 8px;
+    border-radius: 999px;
+    background: var(--panel);
+    border: 1px solid var(--line-2);
+    font: 600 11.5px var(--font);
+    color: var(--ink-2);
+    white-space: nowrap;
+    translate: 0 -50%;
+  }
+  .bt-pill.left {
+    translate: -100% -50%;
+  }
+  .bt-pill .eq {
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+    height: 11px;
+  }
+  .bt-pill .eq i {
+    width: 2.5px;
+    background: var(--accent);
+    height: 40%;
+    animation: bt-eq 0.9s ease-in-out infinite alternate;
+  }
+  .bt-pill .eq i:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .bt-pill .eq i:nth-child(3) {
+    animation-delay: -0.6s;
+  }
+  @keyframes bt-eq {
+    to {
+      height: 100%;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bt-pill .eq i {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  type Id = string;
+  type Layout = {
+    at: Record<Id, [number, number]>;
+    couples: [Id, Id][];
+    fams: [Id[], Id[]][];
+    tour: Id[];
+    pills: [Id, string, 'l' | 'r'][];
+  };
+
+  const PEOPLE: Record<Id, [string, string, string, string]> = {
+    rd: ['Robert', 'Grandpa', '#4f46e5', "is your grandpa, Dad's father"],
+    kd: ['Margaret', 'Grandma', '#be185d', "is your grandma, Dad's mother"],
+    mn: ['George', 'Grandpa', '#0f766e', "is your grandpa, Mom's father"],
+    ln: ['Helen', 'Grandma', '#92400e', "is your grandma, Mom's mother"],
+    po: ['Emily', 'Aunt', '#9a3412', "is your aunt, Uncle James's wife"],
+    vk: ['James', 'Uncle', '#334155', "is your uncle, Dad's brother"],
+    ar: ['Michael', 'Dad', '#065f46', 'is your dad'],
+    ni: ['Sarah', 'Mom', '#9a3412', 'is your mom'],
+    an: ['Laura', 'Aunt', '#4f46e5', "is your aunt, Mom's sister"],
+    rh: ['David', 'Uncle', '#0f766e', "is your uncle, Aunt Laura's husband"],
+    kb: ['Ethan', 'Cousin', '#be185d', "is your cousin, Uncle James's son"],
+    me: ['You', '', '#e25e00', ''],
+    sa: ['Chloe', 'Sister', '#0f766e', 'is your sister'],
+    is: ['Lily', 'Cousin', '#4f46e5', "is your cousin, Aunt Laura's daughter"],
+  };
+
+  const LAYOUTS: Record<'wide' | 'narrow', Layout> = {
+    wide: {
+      at: { rd: [2, 0], kd: [3, 0], mn: [6, 0], ln: [7, 0], po: [0, 1], vk: [1, 1], ar: [4, 1], ni: [5, 1], an: [7, 1], rh: [8, 1], kb: [0, 2], me: [4, 2], sa: [5, 2], is: [8, 2] },
+      couples: [['rd', 'kd'], ['mn', 'ln'], ['po', 'vk'], ['ar', 'ni'], ['an', 'rh']],
+      fams: [[['rd', 'kd'], ['vk', 'ar']], [['mn', 'ln'], ['ni', 'an']], [['po', 'vk'], ['kb']], [['ar', 'ni'], ['me', 'sa']], [['an', 'rh'], ['is']]],
+      tour: ['kb', 'ln', 'is', 'rd', 'sa', 'rh', 'po'],
+      pills: [['rd', 'Golden Hour Drive', 'l'], ['ln', 'Northern Lights Waltz', 'r'], ['kb', 'Late Train Home', 'l'], ['sa', 'Sunday Kitchen', 'r']],
+    },
+    narrow: {
+      at: { rd: [0, 0], kd: [1, 0], mn: [2, 0], ln: [3, 0], ar: [1, 1], ni: [2, 1], me: [1, 2], sa: [2, 2] },
+      couples: [['rd', 'kd'], ['mn', 'ln'], ['ar', 'ni']],
+      fams: [[['rd', 'kd'], ['ar']], [['mn', 'ln'], ['ni']], [['ar', 'ni'], ['me', 'sa']]],
+      tour: ['ln', 'rd', 'sa', 'kd', 'mn'],
+      pills: [],
+    },
+  };
+
+  const GRID = 22, SLOT = 88, ROW = 154, TOP = 34, R = 17;
+  const NS = 'http://www.w3.org/2000/svg';
+  const box = document.getElementById('bt')!;
+  const svg = document.getElementById('bt-svg')!;
+  const sayEl = document.getElementById('bt-say')!;
+  const hero = box.closest('.hero') as HTMLElement;
+
+  let L: Layout;
+  let pos: Record<Id, { x: number; y: number }> = {};
+  let strokes: { d: string; keys: string[] }[] = [];
+  let hotLayer: SVGGElement;
+  let nodes: Record<Id, SVGGElement> = {};
+  let focusId: Id | undefined;
+  let pausedUntil = 0;
+
+  function el<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number>, parent?: Element) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, String(attrs[k]));
+    parent?.appendChild(e);
+    return e;
+  }
+
+  function elbow(o: { x: number; y: number }, busY: number, t: { x: number; y: number }) {
+    if (Math.abs(t.x - o.x) < 1) return `M${o.x} ${o.y}V${t.y}`;
+    const r = 8, d = Math.sign(t.x - o.x);
+    return `M${o.x} ${o.y}V${busY - r}Q${o.x} ${busY} ${o.x + d * r} ${busY}H${t.x - d * r}Q${t.x} ${busY} ${t.x} ${busY + r}V${t.y}`;
+  }
+
+  const oct = (x: number, y: number, r: number) =>
+    [[0.3, 0], [0.7, 0], [1, 0.3], [1, 0.7], [0.7, 1], [0.3, 1], [0, 0.7], [0, 0.3]]
+      .map(([a, b]) => `${x - r + 2 * r * a},${y - r + 2 * r * b}`)
+      .join(' ');
+
+  function draw() {
+    const W = box.clientWidth;
+    L = W >= 900 ? LAYOUTS.wide : LAYOUTS.narrow;
+    const cols = Math.max(...Object.values(L.at).map((a) => a[0]));
+    const origin = Math.round((W - cols * SLOT) / 2 / GRID) * GRID + 0.5;
+    pos = {};
+    for (const [id, [c, r]] of Object.entries(L.at)) pos[id] = { x: origin + c * SLOT, y: TOP + r * ROW };
+
+    svg.replaceChildren();
+    strokes = [];
+    const lines = el('g', {}, svg);
+    for (const [a, b] of L.couples) {
+      const mid = (pos[a].x + pos[b].x) / 2, y = pos[a].y;
+      const kids = L.fams.find(([ps]) => ps.join() === [a, b].join())?.[1] ?? [];
+      strokes.push({ d: `M${pos[a].x + R + 3} ${y}H${mid}`, keys: [`${a}~${b}`, ...kids.map((k) => `${a}>${k}`)] });
+      strokes.push({ d: `M${mid} ${y}H${pos[b].x - R - 3}`, keys: [`${a}~${b}`, ...kids.map((k) => `${b}>${k}`)] });
+    }
+    for (const [ps, kids] of L.fams) {
+      const o = { x: (pos[ps[0]].x + pos[ps[1]].x) / 2, y: pos[ps[0]].y };
+      const busY = pos[kids[0]].y - 3 * GRID;
+      for (const k of kids) strokes.push({ d: elbow(o, busY, pos[k]), keys: ps.map((p) => `${p}>${k}`) });
+    }
+    for (const st of strokes) el('path', { d: st.d, class: 'line' }, lines);
+    hotLayer = el('g', {}, svg);
+
+    for (const [a, b] of L.couples) {
+      const x = (pos[a].x + pos[b].x) / 2, y = pos[a].y;
+      el('circle', { cx: x, cy: y, r: 8, class: 'heart-bg' }, svg);
+      el('path', { d: 'M0 -2.4c-1.2-2.3-4.6-1.9-4.6.8 0 2 2.6 3.5 4.6 4.9 2-1.4 4.6-2.9 4.6-4.9 0-2.7-3.4-3.1-4.6-.8z', fill: '#e54151', transform: `translate(${x} ${y})` }, svg);
+    }
+
+    nodes = {};
+    for (const id of Object.keys(L.at)) {
+      const [name, word, color] = PEOPLE[id];
+      const p = pos[id], me = id === 'me', r = me ? 21 : R;
+      const g = el('g', { class: 'p', tabindex: me ? -1 : 0, role: me ? 'img' : 'button', 'aria-label': me ? 'You' : `${name}, your ${word.toLowerCase()}` }, svg);
+      el('polygon', { points: oct(p.x, p.y, r + 4), fill: 'none', stroke: me ? '#e25e00' : 'transparent', 'stroke-width': 2, class: me ? '' : 'ring' }, g);
+      el('polygon', { points: oct(p.x, p.y, r), fill: color }, g);
+      el('text', { x: p.x, y: p.y + 5, 'text-anchor': 'middle', 'font-size': me ? 14 : 13, 'font-weight': 800, fill: '#fff', 'font-family': 'var(--font)' }, g).textContent = name[0];
+      el('text', { x: p.x, y: p.y + r + 20, 'text-anchor': 'middle', class: 'name' }, g).textContent = name;
+      if (word) el('text', { x: p.x, y: p.y + r + 34, 'text-anchor': 'middle', class: 'word' }, g).textContent = word;
+      if (!me) {
+        const pick = () => {
+          pausedUntil = Date.now() + 12000;
+          focus(id);
+        };
+        g.addEventListener('click', pick);
+        g.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            pick();
+          }
+        });
+      }
+      nodes[id] = g;
+    }
+
+    box.querySelectorAll('.bt-pill').forEach((n) => n.remove());
+    for (const [id, song, side] of L.pills) {
+      const p = pos[id];
+      const pill = document.createElement('span');
+      pill.className = side === 'l' ? 'bt-pill left' : 'bt-pill';
+      pill.style.top = `${p.y}px`;
+      pill.style.left = `${side === 'l' ? p.x - R - 14 : p.x + R + 14}px`;
+      pill.title = `${PEOPLE[id][0]} is listening to ${song}`;
+      pill.innerHTML = '<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>';
+      pill.append(song);
+      box.append(pill);
+    }
+
+    snapRain();
+    focus(focusId && L.at[focusId] ? focusId : L.tour[0]);
+  }
+
+  /** Each falling streak sits on a background hairline; half of them fall onto the tree's own upright lines. */
+  function snapRain() {
+    if (!hero) return;
+    const off = box.getBoundingClientRect().left - hero.getBoundingClientRect().left;
+    const W = hero.clientWidth;
+    const cols = [...new Set(Object.values(pos).map((p) => Math.round(p.x - 0.5 + off)))];
+    hero.querySelectorAll<HTMLElement>('.rain i').forEach((d, i) => {
+      d.dataset.pct ??= d.style.left;
+      let x = i % 2 === 0 && cols.length ? cols[((i / 2) * 3) % cols.length] : (parseFloat(d.dataset.pct) / 100) * W;
+      x = Math.round(x / GRID) * GRID;
+      d.style.left = `${x}px`;
+    });
+  }
+
+  function pathTo(to: Id) {
+    const next: Record<Id, [Id, string][]> = {};
+    const link = (a: Id, b: Id, key: string) => {
+      (next[a] ||= []).push([b, key]);
+      (next[b] ||= []).push([a, key]);
+    };
+    for (const [ps, kids] of L.fams) for (const p of ps) for (const k of kids) link(p, k, `${p}>${k}`);
+    for (const [a, b] of L.couples) link(a, b, `${a}~${b}`);
+    const came: Record<Id, [Id, string]> = {};
+    const seen = new Set(['me']);
+    const queue = ['me'];
+    while (queue.length) {
+      const at = queue.shift()!;
+      if (at === to) break;
+      for (const [n, k] of next[at] ?? []) {
+        if (seen.has(n)) continue;
+        seen.add(n);
+        came[n] = [at, k];
+        queue.push(n);
+      }
+    }
+    const keys = new Set<string>();
+    for (let at = to; came[at]; at = came[at][0]) keys.add(came[at][1]);
+    return keys;
+  }
+
+  function focus(id: Id) {
+    focusId = id;
+    const keys = pathTo(id);
+    hotLayer.replaceChildren();
+    for (const st of strokes) if (st.keys.some((k) => keys.has(k))) el('path', { d: st.d, class: 'hot' }, hotLayer);
+    for (const [k, g] of Object.entries(nodes)) g.classList.toggle('on', k === id);
+    const [name, , , text] = PEOPLE[id];
+    const b = document.createElement('b');
+    b.textContent = name;
+    sayEl.replaceChildren(b, ` ${text}.`);
+  }
+
+  draw();
+  let resize: number | undefined;
+  window.addEventListener('resize', () => {
+    clearTimeout(resize);
+    resize = window.setTimeout(draw, 120);
+  });
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(() => {
+      if (Date.now() < pausedUntil || document.hidden) return;
+      const t = L.tour;
+      focus(t[(t.indexOf(focusId ?? '') + 1) % t.length]);
+    }, 3200);
+  }
+</script>

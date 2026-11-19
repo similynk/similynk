@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { version } from '../data/site';
+import { versionLabel } from '../data/site';
 ---
 
 <header class="nav">
@@ -11,7 +11,7 @@ import { version } from '../data/site';
       <a href="/docs/updates/">Updates</a>
     </nav>
     <div class="right">
-      <span class="chip">v{version}</span>
+      <span class="chip">{versionLabel}</span>
       <a class="btn primary sm" href="/#download">Download</a>
     </div>
   </div>
@@ -76,6 +76,7 @@ import { version } from '../data/site';
     border: 1px solid var(--line-2);
     font: 500 12.5px var(--mono);
     color: var(--ink-2);
+    white-space: nowrap;
   }
   @media (max-width: 600px) {
     nav,
